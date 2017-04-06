@@ -15,8 +15,9 @@ router.post('/addUserCategory',function (req, res) {
         if(err)
             res.json(err);
         res.json({"succeded":"true"});
-    })
+    });
 });
+
 router.get('/users',function (req, res) {
     User.find(function (err,users) {
         if(err)
