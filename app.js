@@ -10,6 +10,7 @@ var users = require('./routes/users');
 var apiEvent =require('./api/apiEvent');
 var apiTag =require('./api/apiTag');
 var apiCat =require('./api/apiCategorie');
+var apiUser = require('./api/ApiUser');
 
 
 var mongoose = require('./config/db');
@@ -41,6 +42,7 @@ app.use('/users', users);
 app.use('/api', apiEvent);
 app.use('/api',apiTag);
 app.use('/api',apiCat);
+app.use('/api',apiUser);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
