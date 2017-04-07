@@ -12,7 +12,9 @@ router.get('/tags', function (req, res) {
         var l = JSON.parse(body);
         res.json(l.data);
     });
-});
+ });
+
+
 
 router.get('/syncTags', function (req, res) {
     var url = "https://api.paris.fr/api/data/2.1/QueFaire/get_tags/?token=fb1cba01bf7191ab033e7d7a441667ef18f77f14581e00b3b577871083fbfed4";

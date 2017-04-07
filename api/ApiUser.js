@@ -51,6 +51,17 @@ router.put('/addCatToUser',function (req, res) {
      });
 
 });
+
+router.put('/delCatFromUser',function (req, res) {
+    console.log("username ="+user.name);
+    User.findOneAndUpdate({name: user.name}, {$pull:{evt_categories:req.body}},function (err) {
+        if(err)
+            console.log("find one and update");
+        res.json(err);
+    });
+
+});
+
 router.put('/addTagToUser',function (req, res) {
     console.log("username ="+user.name);
     User.findOneAndUpdate({name: user.name}, {$push:{evt_tags:req.body}},function (err) {
@@ -59,4 +70,15 @@ router.put('/addTagToUser',function (req, res) {
         res.json(err);
      });
 });
+router.put('/deleteTagfromUser',function (req, res) {
+    console.log("username ="+user.name);
+    User.findOneAndUpdate({name: user.name}, {$pull:{evt_tags:req.body}},function (err) {
+        if(err)
+            console.log("find one and update");
+        res.json(err);
+    });
+});
+
+
+
 module.exports = router;

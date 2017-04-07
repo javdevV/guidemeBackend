@@ -34,7 +34,6 @@ router.get('/events/',function (req, res, next) {
        //&categories="+user.evt_categories.id+"&tags="+user.evt_tags.id+"&start=&end=&offset=&limit=
     for (var k = 0 ;k<userCats.length;k++){
         url=url+userCats[k].toString()+",";
-
      }
     url=url.substring(0,url.length -1);
     url=url+"&tags=";
