@@ -8,14 +8,24 @@ var User = require('../models/user');
 
 var token = "fb1cba01bf7191ab033e7d7a441667ef18f77f14581e00b3b577871083fbfed4";
 
-var userId = "58e6d52cdad0ee2520e160d0";
-var user=new User();
-User.findById(userId,function (err,doc) {
-    if(err)
-        res.json(err);
-    user.name=doc.name;
-    user.evt_tags=doc.evt_tags;
-    user.evt_categories=doc.evt_categories;
+// var userId = "58eb5b0af36d286799309060";
+// var user=new User();
+// User.findById(userId,function (err,doc) {
+//     if(err)
+//         res.json(err);
+//     user.name=doc.name;
+//     user.evt_tags=doc.evt_tags;
+//     user.evt_categories=doc.evt_categories;
+// });
+var user = new User({
+    "name": "houssem",
+    "evt_categories": [],
+    "evt_tags": [
+        {
+            "title": "Bibliothèques",
+            "id": 5
+        }
+    ]
 });
 router.get('/events/',function (req, res, next) {
     console.log("user ligne 25 :   "+user);
