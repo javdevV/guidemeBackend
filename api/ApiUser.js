@@ -42,7 +42,7 @@ router.get('/users',function (req, res) {
     })
 });
 
-router.put('/addCatToUser',function (req, res) {
+    router.put('/addCatToUser',function (req, res) {
     console.log("username ="+user.name);
     User.findOneAndUpdate({name: user.name}, {$push:{evt_categories:req.body}},function (err) {
             if(err)
@@ -78,7 +78,5 @@ router.put('/deleteTagfromUser',function (req, res) {
         res.json(err);
     });
 });
-
-
 
 module.exports = router;
