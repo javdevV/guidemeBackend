@@ -1,4 +1,3 @@
-
 /**
  * Created by Oussema on 10/04/2017.
  */
@@ -9,7 +8,8 @@ var beaconsSchema = new Schema({
     id : Number,
     uuid : String,
     minor:Number,
-    major:Number
+    major:Number,
+    state:String
 
 },{collection : "ibeacons"});
 module.exports =mongoose.model('ibeacons',beaconsSchema);

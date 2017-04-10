@@ -11,6 +11,7 @@ var apiEvent =require('./api/apiEvent');
 var apiTag =require('./api/apiTag');
 var apiCat =require('./api/apiCategorie');
 var apiUser = require('./api/ApiUser');
+var apiBeacons = require('./api/apiBeacons');
 var mongoose = require('./config/db');
 
 var app = express();
@@ -23,7 +24,7 @@ app.use(function(req, res, next) {
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'tiwg');
+app.set('view engine', 'twig');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -39,6 +40,7 @@ app.use('/api', apiEvent);
 app.use('/api',apiTag);
 app.use('/api',apiCat);
 app.use('/api',apiUser);
+app.use('/api',apiBeacons);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
