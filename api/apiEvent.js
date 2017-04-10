@@ -6,13 +6,15 @@ var router = express.Router();
 var request = require('request');
 var User = require('../models/user');
 
+
 var token = "fb1cba01bf7191ab033e7d7a441667ef18f77f14581e00b3b577871083fbfed4";
 
-var userId = "58e6d52cdad0ee2520e160d0";
+var userId = "58ebd19657ea311bbcdfb56e";
 var user=new User();
-User.findById(userId,function (err,doc) {
+User.findById({"_id":"58ebd19657ea311bbcdfb56e"},function (err,doc) {
     if(err)
-        res.json(err);
+        console.log(err);
+    console.log(doc);
     user.name=doc.name;
     user.evt_tags=doc.evt_tags;
     user.evt_categories=doc.evt_categories;

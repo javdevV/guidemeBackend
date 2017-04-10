@@ -5,6 +5,9 @@ var express = require('express');
 var router = express.Router();
 var request = require('request');
 var User  =require('../models/user');
+var mongoose = require('../config/db');
+var mongodb = require('mongodb');
+var ObjectId = mongodb.ObjectID;
 
 // var user = new User({
 //     name:"houssem",
@@ -12,24 +15,25 @@ var User  =require('../models/user');
 //     evt_categories : [{"idcategories" : 47, "name": "Ateliers Beaux-Arts"}]
 // });
 
-var userId = "58e6d52cdad0ee2520e160d0";
+var userId = "58ebd19657ea311bbcdfb56e";
 var user=new User();
-User.findById(userId,function (err,doc) {
+User.findById({"_id":"58ebd19657ea311bbcdfb56e"},function (err,doc) {
     if(err)
         res.json(err);
-    user.name=doc.name;
+     user.name=doc.name;
     user.evt_tags=doc.evt_tags;
     user.evt_categories=doc.evt_categories;
 });
 
 router.post('/adduser',function (req, res) {
-    var user = new User({ name: req.body.name,
+    var user = new User({
+         name: req.body.name,
         evt_tags : req.body.evt_tags,
         evt_categories:req.body.evt_categories});
     user.save(function (err) {
         if(err)
-            res.json(err);
-        res.json({"succeded":"true"});
+            console.log(err);
+        console.log({"succeded":"true"});
     });
 });
 
