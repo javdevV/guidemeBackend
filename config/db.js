@@ -4,5 +4,5 @@
  var mongoose =require('mongoose');
 mongoose.Promise = global.Promise;
 console.log('connected .. ');
-// module.exports = mongoose.connect('mongodb://houssem:houssem@ds133450.mlab.com:33450/guideme');
-module.exports = mongoose.connect('mongodb://localhost/guideme');
+module.exports = mongoose.connect('mongodb://oussema:oussema@ds133450.mlab.com:33450/guideme');
+//module.exports = mongoose.connect('mongodb://localhost/guideme');
