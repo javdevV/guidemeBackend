@@ -12,7 +12,7 @@ var apiTag =require('./api/apiTag');
 var apiCat =require('./api/apiCategorie');
 var apiUser = require('./api/ApiUser');
 var mongoose = require('./config/db');
-
+var interestApi=require('./api/ApiInterests');
 var app = express();
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
