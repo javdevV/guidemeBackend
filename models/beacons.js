@@ -9,7 +9,10 @@ var beaconsSchema = new Schema({
     uuid : String,
     minor:Number,
     major:Number,
-    state:String
+    state:String,
+    longi:Number,
+    lapti:Number,
+    remainingdays:Number
 
 },{collection : "ibeacons"});
 module.exports =mongoose.model('ibeacons',beaconsSchema);

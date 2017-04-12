@@ -14,7 +14,7 @@ router.get('/beacons', function(req, res) {
     })
 });
 
-router.post('/beacons/add', function (req,res) {
+router.post('/beacons', function (req,res) {
     Beacon= new Beacon(req.body);
     Beacon.save(function (err) {
         if(err)
