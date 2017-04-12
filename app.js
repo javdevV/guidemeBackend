@@ -11,17 +11,19 @@ var apiEvent =require('./api/apiEvent');
 var apiTag =require('./api/apiTag');
 var apiCat =require('./api/apiCategorie');
 var apiUser = require('./api/ApiUser');
-var apiMusee= require('./api/apiMusee');
-var mongoose = require('./config/db');
+ var apiBeacons = require('./api/apiBeacons');
+ var apiMusee= require('./api/apiMusee');
+ var mongoose = require('./config/db');
 var interestApi=require('./api/ApiInterests');
 var app = express();
+ 
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
     res.setHeader('Access-Control-Allow-Credentials', true);
-    next();
+     next();
 });
 
 // view engine setup
@@ -42,12 +44,14 @@ app.use('/api', apiEvent);
 app.use('/api',apiTag);
 app.use('/api',apiCat);
 app.use('/api',apiUser);
- 
+ app.use('/api',apiBeacons);
+// catch 404 and forward to error handler
+  
 app.use('/interestapi', interestApi);
  
 app.use('/api',apiMusee);
  // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+ app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
