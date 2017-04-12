@@ -9,7 +9,8 @@ var User = require('../models/user');
 
 var token = "fb1cba01bf7191ab033e7d7a441667ef18f77f14581e00b3b577871083fbfed4";
 
-  var userId = "58ebd19657ea311bbcdfb56e";
+ 
+var userId = "58ebd19657ea311bbcdfb56e";
 var user=new User();
 User.findById({"_id":"58ebd19657ea311bbcdfb56e"},function (err,doc) {
     if(err)
@@ -19,7 +20,6 @@ User.findById({"_id":"58ebd19657ea311bbcdfb56e"},function (err,doc) {
     user.evt_tags=doc.evt_tags;
     user.evt_categories=doc.evt_categories;
  });
-
 router.get('/events/',function (req, res, next) {
     console.log("user ligne 25 :   "+user);
     var userTags = [];
@@ -33,16 +33,16 @@ router.get('/events/',function (req, res, next) {
     console.log("length cats : "+userCats.length);
     console.log("length tags : "+userTags.length);
 
-      var url = "https://api.paris.fr/api/data/2.2/QueFaire/get_events/?token=fb1cba01bf7191ab033e7d7a441667ef18f77f14581e00b3b577871083fbfed4&start=&end=&offset=&limit=&categories=";
-       //&categories="+user.evt_categories.id+"&tags="+user.evt_tags.id+"&start=&end=&offset=&limit=
+    var url = "https://api.paris.fr/api/data/2.2/QueFaire/get_events/?token=fb1cba01bf7191ab033e7d7a441667ef18f77f14581e00b3b577871083fbfed4&start=&end=&offset=&limit=&categories=";
+    //&categories="+user.evt_categories.id+"&tags="+user.evt_tags.id+"&start=&end=&offset=&limit=
     for (var k = 0 ;k<userCats.length;k++){
         url=url+userCats[k].toString()+",";
-     }
+    }
     url=url.substring(0,url.length -1);
     url=url+"&tags=";
     for (var t = 0 ;t<userTags.length;t++){
         url=url+userTags[t].toString()+",";
-     }
+    }
     url=url.substring(0,url.length-1);
     console.log("new url : " +url);
 
