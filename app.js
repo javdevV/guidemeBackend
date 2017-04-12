@@ -13,7 +13,7 @@ var apiCat =require('./api/apiCategorie');
 var apiUser = require('./api/ApiUser');
 var apiMusee= require('./api/apiMusee');
 var mongoose = require('./config/db');
-
+var interestApi=require('./api/ApiInterests');
 var app = express();
 
 app.use(function (req, res, next) {
@@ -42,8 +42,11 @@ app.use('/api', apiEvent);
 app.use('/api',apiTag);
 app.use('/api',apiCat);
 app.use('/api',apiUser);
+ 
+app.use('/interestapi', interestApi);
+ 
 app.use('/api',apiMusee);
-// catch 404 and forward to error handler
+ // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
