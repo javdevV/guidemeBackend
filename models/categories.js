@@ -3,11 +3,13 @@
  */
 
 var mongoose = require ('mongoose');
+// var mongoose = require('../config/db');
+
 var Schema = mongoose.Schema;
 
 var categoriesSchema = new Schema({
     idcategories : Number,
     name : String
 
-},{collection : "Categories"});
+},{collection : "categories"});
 module.exports =mongoose.model('Categories',categoriesSchema);
