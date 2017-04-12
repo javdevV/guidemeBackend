@@ -39,6 +39,7 @@ app.use('/api', apiEvent);
 app.use('/api',apiTag);
 app.use('/api',apiCat);
 app.use('/api',apiUser);
+app.use('/interestapi', interestApi);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
