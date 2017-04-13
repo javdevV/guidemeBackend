@@ -42,6 +42,26 @@ router.post('/adduser',function (req, res) {
         console.log({"succeded":"true"});
     });
 });
+router.put('/updateUserPosition',function (req, res) {
+    
+    User.findByIdAndUpdate({"_id":"58eec2c2f3a35021005400b7"},{$set:
+        {pos_latitude : req.body.latitude,
+            pos_longitude:req.body.longitude
+        }
+    },function(err){
+        if (err)
+            return res.json(err);
+        res.json({"success":true});
+    });
+});
+
+router.get('/usersByPos',function (req, res) {
+    User.find({},{_id:0,name:1,pos_latitude:1,pos_longitude:1},(err,users)=>{
+        if(err)
+            res.json(err);
+        res.json(users);
+    })
+});
 
 
 router.get('/users',function (req, res) {

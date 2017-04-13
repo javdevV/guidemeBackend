@@ -10,6 +10,8 @@ var categoriesSchema = new Schema({idcategories: Number, name: String});
 
 var userSchema = new Schema({
      name: String,
+     pos_latitude:{type:Number},
+     pos_longitude:{type:Number},
     evt_tags: [tagsSchema],
     evt_categories: [categoriesSchema]
 
