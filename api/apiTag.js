@@ -37,5 +37,12 @@ router.get('/syncTags', function (req, res) {
         res.json("synchronized ! ");
     });
 });
+router.get('/getTagByTitle/:title',(req,res)=>{
+    Tag.find({"title":req.params.title},{title:1},(err,tag)=>{
+        if(err)
+            res.json(err)
+        res.json(tag);
+    })
+})
 
 module.exports = router;
