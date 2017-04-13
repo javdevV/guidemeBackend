@@ -47,10 +47,10 @@ router.put('/:id', function (req, res, next) {
 });
 
 router.delete('/:id', function (req, res, next) {
-    Interest.findByIdAndRemove({_id:req.params.id}, req.body, function (err, interest) {
+    Interest.findByIdAndRemove({_id:req.params.id}, function (err, interest) {
         if (err)
             return res.json(err);
-        res.json({"deleted":true});
+        res.status(200).json({"deleted":true});
     });
 });
 module.exports=router;
