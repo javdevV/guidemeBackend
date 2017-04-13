@@ -10,9 +10,9 @@ var User = require('../models/user');
 var token = "fb1cba01bf7191ab033e7d7a441667ef18f77f14581e00b3b577871083fbfed4";
 
  
-var userId = "58ebd19657ea311bbcdfb56e";
+var userId = "58efb256ab37572644272a50";
 var user=new User();
-User.findById({"_id":"58ebd19657ea311bbcdfb56e"},function (err,doc) {
+User.findById({"_id":"58efb256ab37572644272a50"},function (err,doc) {
     if(err)
         console.log(err);
     console.log(doc);
