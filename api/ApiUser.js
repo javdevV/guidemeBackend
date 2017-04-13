@@ -11,9 +11,9 @@ var ObjectId = mongodb.ObjectID;
 
 
 
-var userId = "58ebd19657ea311bbcdfb56e";
+var userId = "58efb256ab37572644272a50";
 var user=new User();
-User.findById({"_id":"58ebd19657ea311bbcdfb56e"},function (err,doc) {
+User.findById({"_id":"58efb256ab37572644272a50"},function (err,doc) {
     if(err)
         res.json(err);
     user.name=doc.name;
@@ -35,7 +35,8 @@ router.post('/adduser',function (req, res) {
     var user = new User({
         name: req.body.name,
         evt_tags : req.body.evt_tags,
-        evt_categories:req.body.evt_categories});
+        evt_categories:req.body.evt_categories,
+        interests:req.body.interests});
     user.save(function (err) {
         if(err)
             console.log(err);
@@ -108,5 +109,31 @@ router.put('/deleteTagfromUser',function (req, res) {
         res.json(err);
     });
 });
+
+
+router.put('/addInterestToUser',function (req, res) {
+    console.log("username ="+user.name);
+    User.findOneAndUpdate({name: user.name}, {$push:{interests:req.body}},function (err) {
+        if(err)
+            console.log("find one and update");
+        res.json(err);
+    });
+});
+router.put('/deleteInterestfromUser',function (req, res) {
+    console.log("username ="+user.name);
+    User.findOneAndUpdate({name: user.name}, {$pull:{interests:req.body}},function (err) {
+        if(err)
+            console.log("find one and update");
+        res.json(err);
+    });
+});
+router.get('/usersByInterest/:it',function (req, res) {
+    User.find({"interests.label": req.params.it},function (err,users) {
+        if(err)
+            res.json(err);
+        res.json(users);
+    })
+});
+
 
 module.exports = router;
