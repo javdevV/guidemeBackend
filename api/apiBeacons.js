@@ -14,14 +14,25 @@ router.get('/beacons', function(req, res) {
     })
 });
 
-router.post('/beacons', function (req,res) {
-    Beacon= new Beacon(req.body);
-    Beacon.save(function (err) {
-        if(err)
-            return res.json(err);
-        res.json(Beacon);
-    })
+// router.post('/beacons', function (req,res) {
+//     Beacon= new Beacon(req.body);
+//     Beacon.save(function (err) {
+//         if(err)
+//             return res.json(err);
+//         res.json(Beacon);
+//     })
+// });
+
+
+router.post('/beacons', function(req, res, next) {
+    Beacon.create(req.body, function (err, post) {
+        if (err) return next(err);
+        res.json(post);
+    });
 });
+
+
+
 
 
 router.get('/beacons/:id', function(req, res) {
