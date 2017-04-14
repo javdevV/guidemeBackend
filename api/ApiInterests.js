@@ -1,6 +1,8 @@
 /**
  * Created by User on 4/6/2017.
  */
+
+ //sourour file
 var express = require('express');
 var router = express.Router();
 var Interest = require('../models/interestModel');
@@ -45,10 +47,10 @@ router.put('/:id', function (req, res, next) {
 });
 
 router.delete('/:id', function (req, res, next) {
-    Interest.findByIdAndRemove({_id:req.params.id}, req.body, function (err, interest) {
+    Interest.findByIdAndRemove({_id:req.params.id}, function (err, interest) {
         if (err)
             return res.json(err);
-        res.json({"deleted":true});
+        res.status(200).json({"deleted":true});
     });
 });
 module.exports=router;

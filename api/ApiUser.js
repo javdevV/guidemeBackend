@@ -35,7 +35,8 @@ router.post('/adduser',function (req, res) {
     var user = new User({
         name: req.body.name,
         evt_tags : req.body.evt_tags,
-        evt_categories:req.body.evt_categories});
+        evt_categories:req.body.evt_categories,
+        interests:req.body.interests});
     user.save(function (err) {
         if(err)
             console.log(err);
@@ -110,7 +111,7 @@ router.put('/deleteTagfromUser',function (req, res) {
     });
 });
 
-router.get('/loadUsersTAgs',(req,res)=>{
+ router.get('/loadUsersTAgs',(req,res)=>{
 	User.findById({"_id":"58efb212ab37572644272a4a"},{_id:0,"evt_tags.id":1,"evt_tags.title":1},(err,users)=>{
         if(err)
             res.json(err);
@@ -119,11 +120,40 @@ router.get('/loadUsersTAgs',(req,res)=>{
     })
 });
 router.get('/loadUsersCats',(req,res)=>{
-	User.findById({"_id":"58efb212ab37572644272a4a"},{_id:0,"evt_categories.name":1},(err,users)=>{
+	User.findById({"_id":"58efb212ab37572644272a4a"},{_id:0,"evt_tags.id":1,"evt_categories.name":1},(err,users)=>{
         if(err)
             res.json(err);
         res.json(users);
+        console.log(users);
     })
-})
+});
 
+ 
+ 
+ 
+router.put('/addInterestToUser',function (req, res) {
+    console.log("username ="+user.name);
+    User.findOneAndUpdate({name: user.name}, {$push:{interests:req.body}},function (err) {
+        if(err)
+            console.log("find one and update");
+        res.json(err);
+    });
+});
+router.put('/deleteInterestfromUser',function (req, res) {
+    console.log("username ="+user.name);
+    User.findOneAndUpdate({name: user.name}, {$pull:{interests:req.body}},function (err) {
+        if(err)
+            console.log("find one and update");
+        res.json(err);
+    });
+});
+router.get('/usersByInterest/:it',function (req, res) {
+    User.find({"interests.label": req.params.it},function (err,users) {
+         if(err)
+            res.json(err);
+        res.json(users);
+    })
+ })
+ 
+ 
 module.exports = router;
