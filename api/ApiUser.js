@@ -44,7 +44,7 @@ router.post('/adduser',function (req, res) {
 });
 router.put('/updateUserPosition',function (req, res) {
     
-    User.findByIdAndUpdate({"_id":"58eec2c2f3a35021005400b7"},{$set:
+    User.findByIdAndUpdate({"_id":"58efb212ab37572644272a4a"},{$set:
         {pos_latitude : req.body.latitude,
             pos_longitude:req.body.longitude
         }
@@ -84,7 +84,7 @@ router.put('/addCatToUser',function (req, res) {
 
 router.put('/delCatFromUser',function (req, res) {
     console.log("username ="+user.name);
-    User.findOneAndUpdate({name: user.name}, {$pull:{evt_categories:req.body}},function (err) {
+    User.findOneAndUpdate({name: user.name}, {$pull:{"evt_categories":req.body}},function (err) {
         if(err)
             console.log("find one and update");
         res.json(err);
@@ -104,9 +104,26 @@ router.put('/deleteTagfromUser',function (req, res) {
     console.log("username ="+user.name);
     User.findOneAndUpdate({name: user.name}, {$pull:{evt_tags:req.body}},function (err) {
         if(err)
-            console.log("find one and update");
         res.json(err);
+            console.log("find one and update");
+            res.json({"gone":"true"});
     });
 });
+
+router.get('/loadUsersTAgs',(req,res)=>{
+	User.findById({"_id":"58efb212ab37572644272a4a"},{_id:0,"evt_tags.id":1,"evt_tags.title":1},(err,users)=>{
+        if(err)
+            res.json(err);
+        res.json(users);
+        console.log(users);
+    })
+});
+router.get('/loadUsersCats',(req,res)=>{
+	User.findById({"_id":"58efb212ab37572644272a4a"},{_id:0,"evt_categories.name":1},(err,users)=>{
+        if(err)
+            res.json(err);
+        res.json(users);
+    })
+})
 
 module.exports = router;
