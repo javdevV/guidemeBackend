@@ -11,9 +11,9 @@ var ObjectId = mongodb.ObjectID;
 
 
 
-var userId = "58efb256ab37572644272a50";
+var userId = "58efb212ab37572644272a4a";
 var user=new User();
-User.findById({"_id":"58efb256ab37572644272a50"},function (err,doc) {
+User.findById({"_id":"58efb212ab37572644272a4a"},function (err,doc) {
     if(err)
         res.json(err);
     user.name=doc.name;
@@ -43,6 +43,26 @@ router.post('/adduser',function (req, res) {
         console.log({"succeded":"true"});
     });
 });
+router.put('/updateUserPosition',function (req, res) {
+    
+    User.findByIdAndUpdate({"_id":"58efb212ab37572644272a4a"},{$set:
+        {pos_latitude : req.body.latitude,
+            pos_longitude:req.body.longitude
+        }
+    },function(err){
+        if (err)
+            return res.json(err);
+        res.json({"success":true});
+    });
+});
+
+router.get('/usersByPos',function (req, res) {
+    User.find({},{_id:0,name:1,pos_latitude:1,pos_longitude:1},(err,users)=>{
+        if(err)
+            res.json(err);
+        res.json(users);
+    })
+});
 
 
 router.get('/users',function (req, res) {
@@ -65,7 +85,7 @@ router.put('/addCatToUser',function (req, res) {
 
 router.put('/delCatFromUser',function (req, res) {
     console.log("username ="+user.name);
-    User.findOneAndUpdate({name: user.name}, {$pull:{evt_categories:req.body}},function (err) {
+    User.findOneAndUpdate({name: user.name}, {$pull:{"evt_categories":req.body}},function (err) {
         if(err)
             console.log("find one and update");
         res.json(err);
@@ -85,12 +105,32 @@ router.put('/deleteTagfromUser',function (req, res) {
     console.log("username ="+user.name);
     User.findOneAndUpdate({name: user.name}, {$pull:{evt_tags:req.body}},function (err) {
         if(err)
-            console.log("find one and update");
         res.json(err);
+            console.log("find one and update");
+            res.json({"gone":"true"});
     });
 });
 
+ router.get('/loadUsersTAgs',(req,res)=>{
+	User.findById({"_id":"58efb212ab37572644272a4a"},{_id:0,"evt_tags.id":1,"evt_tags.title":1},(err,users)=>{
+        if(err)
+            res.json(err);
+        res.json(users);
+        console.log(users);
+    })
+});
+router.get('/loadUsersCats',(req,res)=>{
+	User.findById({"_id":"58efb212ab37572644272a4a"},{_id:0,"evt_tags.id":1,"evt_categories.name":1},(err,users)=>{
+        if(err)
+            res.json(err);
+        res.json(users);
+        console.log(users);
+    })
+});
 
+ 
+ 
+ 
 router.put('/addInterestToUser',function (req, res) {
     console.log("username ="+user.name);
     User.findOneAndUpdate({name: user.name}, {$push:{interests:req.body}},function (err) {
@@ -109,11 +149,11 @@ router.put('/deleteInterestfromUser',function (req, res) {
 });
 router.get('/usersByInterest/:it',function (req, res) {
     User.find({"interests.label": req.params.it},function (err,users) {
-        if(err)
+         if(err)
             res.json(err);
         res.json(users);
     })
-});
-
-
+ })
+ 
+ 
 module.exports = router;
