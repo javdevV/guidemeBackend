@@ -9,11 +9,11 @@ module.exports = {
   DOMAIN:           'http://localhost:9000',
   SESSION_SECRET:   'meanApp-secret',
 
-  FACEBOOK_ID:      'app-id',
-  FACEBOOK_SECRET:  'secret',
+  FACEBOOK_ID:      '410586175978609',
+  FACEBOOK_SECRET:  '8c572aa60acfd2afef88dea43ba3178f',
 
-  TWITTER_ID:       'app-id',
-  TWITTER_SECRET:   'secret',
+  TWITTER_ID:       'HdFGbo3yvWp8Hm0rmnmvGgG8O',
+  TWITTER_SECRET:   'LQQKQcR2Qb2tQWYcUpe0o0nEXCSUqrIBi4LBBVEYrg0yylVhk5',
 
   keys:{
     access: 'AKIAINZITVNGQBZ7GPHA',
