@@ -34,5 +34,13 @@ router.get('/syncCategories', function (req, res) {
         res.json("synchronized ! ");
     });
 });
+router.get('/getCatByName/:name',(req,res)=>{
+    Category.find({"name":req.params.name},{name:1},(err,cat)=>{
+        if(err)
+            res.json(err)
+        res.json(cat);
+    })
+});
+
 
 module.exports = router;

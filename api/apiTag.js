@@ -29,7 +29,7 @@ router.get('/syncTags', function (req, res) {
         var i=0;
         for (i;i<tab.length;i++){
             var tag = new Tag(tab[i]);
-            tag.update(function (err) {
+            tag.save(function (err) {
                 if(!err)
                     console.log("synchronized ! ");
             });
@@ -37,5 +37,12 @@ router.get('/syncTags', function (req, res) {
         res.json("synchronized ! ");
     });
 });
+router.get('/getTagByTitle/:title',(req,res)=>{
+    Tag.find({"title":req.params.title},{title:1},(err,tag)=>{
+        if(err)
+            res.json(err)
+        res.json(tag);
+    })
+})
 
 module.exports = router;
