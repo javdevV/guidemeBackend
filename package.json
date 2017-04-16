@@ -2,7 +2,7 @@
   "name": "guidemebackend",
   "version": "1.0.0",
   "scripts": {
-    "scripts": "node app.js"
+    "start": "node app.js"
   },
   
   "dependencies": {
@@ -37,7 +37,7 @@
     "serve-favicon": "^2.3.0"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": "6.10.2"
   },
   "private": true
 }
