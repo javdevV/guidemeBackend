@@ -3,7 +3,7 @@
  */
 var express = require('express');
 var router = express.Router();
-var Interest = require('../Models/interestModel');
+var Interest = require('../models/interestModel');
 
 router.post('/', function (req, res, next) {
     var todo = new Interest(req.body);
