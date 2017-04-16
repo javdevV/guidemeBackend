@@ -35,9 +35,5 @@
     "request": "^2.65.0",
     "requirejs": "^2.1.18",
     "serve-favicon": "^2.3.0"
-  },
-  "engines": {
-    "node": "6.10.2"
-  },
-  "private": true
-}
+  }
+ }
