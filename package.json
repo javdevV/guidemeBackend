@@ -2,7 +2,7 @@
   "name": "BestDressed",
   "version": "1.0.0",
   "scripts": {
-    "start": "node ./app"
+    "start": "node ./app.js"
   },
   "main": "server/app.js",
   "dependencies": {
