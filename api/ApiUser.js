@@ -4,16 +4,17 @@
 var express = require('express');
 var router = express.Router();
 var request = require('request');
-var User  =require('../models/user');
+// var User  =require('../models/user');
+var User  =require('../api/user/user.model');
 var mongoose = require('../config/db');
 var mongodb = require('mongodb');
 var ObjectId = mongodb.ObjectID;
 
 
 
-var userId = "58efb212ab37572644272a4a";
+var userId = "58f39e90734d1d3b89babfeb";
 var user=new User();
-User.findById({"_id":"58efb212ab37572644272a4a"},function (err,doc) {
+User.findById({"_id":"58f39e90734d1d3b89babfeb"},function (err,doc) {
     if(err)
         res.json(err);
     user.name=doc.name;
@@ -44,8 +45,8 @@ router.post('/adduser',function (req, res) {
     });
 });
 router.put('/updateUserPosition',function (req, res) {
-    
-    User.findByIdAndUpdate({"_id":"58efb212ab37572644272a4a"},{$set:
+
+    User.findByIdAndUpdate({"_id":"58f39e90734d1d3b89babfeb"},{$set:
         {pos_latitude : req.body.latitude,
             pos_longitude:req.body.longitude
         }
@@ -112,7 +113,7 @@ router.put('/deleteTagfromUser',function (req, res) {
 });
 
  router.get('/loadUsersTAgs',(req,res)=>{
-	User.findById({"_id":"58efb212ab37572644272a4a"},{_id:0,"evt_tags.id":1,"evt_tags.title":1},(err,users)=>{
+	User.findById({"_id":"58f39e90734d1d3b89babfeb"},{_id:0,"evt_tags.id":1,"evt_tags.title":1},(err,users)=>{
         if(err)
             res.json(err);
         res.json(users);
@@ -120,7 +121,7 @@ router.put('/deleteTagfromUser',function (req, res) {
     })
 });
 router.get('/loadUsersCats',(req,res)=>{
-	User.findById({"_id":"58efb212ab37572644272a4a"},{_id:0,"evt_tags.id":1,"evt_categories.name":1},(err,users)=>{
+	User.findById({"_id":"58f39e90734d1d3b89babfeb"},{_id:0,"evt_tags.id":1,"evt_categories.name":1},(err,users)=>{
         if(err)
             res.json(err);
         res.json(users);
@@ -128,9 +129,9 @@ router.get('/loadUsersCats',(req,res)=>{
     })
 });
 
- 
- 
- 
+
+
+
 router.put('/addInterestToUser',function (req, res) {
     console.log("username ="+user.name);
     User.findOneAndUpdate({name: user.name}, {$push:{interests:req.body}},function (err) {
@@ -154,6 +155,6 @@ router.get('/usersByInterest/:it',function (req, res) {
         res.json(users);
     })
  })
- 
- 
+
+
 module.exports = router;

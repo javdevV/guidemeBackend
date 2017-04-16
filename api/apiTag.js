@@ -29,7 +29,7 @@ router.get('/syncTags', function (req, res) {
         var i=0;
         for (i;i<tab.length;i++){
             var tag = new Tag(tab[i]);
-            tag.update(function (err) {
+            tag.save(function (err) {
                 if(!err)
                     console.log("synchronized ! ");
             });

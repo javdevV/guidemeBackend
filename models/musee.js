@@ -2,7 +2,7 @@
  * Taieb.
  */
 
-var mongoose = require('../config/db');
+var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var museeSchema = new Schema({
