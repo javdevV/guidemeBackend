@@ -1,10 +1,11 @@
 {
-  "name": "BestDressed",
+ 
+  "name": "guidemebackend",
+   "version": "1.0.0",
+  "main" : "app.js",
   "scripts": {
-    "start": "node app"
+    "start": "node app.js"
   },
-  "version": "1.0.0",
-  "main": "server/app.js",
   "dependencies": {
     "body-parser": "^1.13.3",
     "cheerio": "^0.19.0",
@@ -37,7 +38,7 @@
     "serve-favicon": "^2.3.0"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": "6.10.2"
   },
   "private": true
 }

@@ -3,7 +3,7 @@
  */
 
 'use strict';
-
+//
 // Set default node environment to development
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
@@ -28,7 +28,8 @@ var server = require('http').createServer(app);
 require('./config/express')(app);
 require('./routes')(app);
 
-// Start server
+// Start server var port = normalizePort(process.env.PORT || '3000');
+
 server.listen(config.port, config.ip, function() {
   console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));
 });
