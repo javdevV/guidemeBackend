@@ -1,10 +1,14 @@
 {
+ 
   "name": "guidemebackend",
-  "version": "1.0.0",
-  "description": "From the command line navigate to this folder and run:\r 1. npm install\r 2. bower install",
-  "main": "app.js",
+    "version": "1.0.0",
+  "main" : "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+     
   "dependencies": {
-  	    "body-parser": "^1.13.3",
+        "body-parser": "^1.13.3",
     "cheerio": "^0.19.0",
     "composable-middleware": "^0.3.0",
     "compression": "^1.5.2",
