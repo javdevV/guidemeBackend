@@ -1,5 +1,8 @@
 {
   "name": "BestDressed",
+  "scripts": {
+    "start": "node app"
+  },
   "version": "1.0.0",
   "main": "server/app.js",
   "dependencies": {
