@@ -34,15 +34,7 @@ exports.setup = function (User, config) {
           return done(err);
         //return done(err, user);
       });
-      
-    }
-    else {
-      console.log("profile dn "+profile.displayName);
-      console.log("profile un "+profile.username);
-     // console.log("profile fname "+user.pinterest.data.first_name);
-      //return done(err, user);
-    }
-    request.get("https://api.pinterest.com/v1/me/following/interests/?access_token="+accessToken+"&fields=id%2Cname",
+      request.get("https://api.pinterest.com/v1/me/following/interests/?access_token="+accessToken+"&fields=id%2Cname",
       function(error, response, body){
         var l= JSON.parse(body);
         console.log("interests : "+l);
@@ -61,6 +53,14 @@ exports.setup = function (User, config) {
       if(!err)
         return done(err, user);
     });
+    }
+    else {
+      console.log("profile dn "+profile.displayName);
+      console.log("profile un "+profile.username);
+     // console.log("profile fname "+user.pinterest.data.first_name);
+      return done(err, user);
+    }
+    
   });
  }
  ));
