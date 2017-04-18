@@ -60,6 +60,12 @@ var all = {
     callbackURL:  (process.env.DOMAIN || '') + '/auth/twitter/callback'
   },
 
+  pinterest: {
+    clientID:     process.env.PINTEREST_APP_ID|| 'id',
+    clientSecret: process.env.PINTEREST_APP_SECRET || 'secret'
+    //callbackURL:  (process.env.DOMAIN || '') + '/auth/pinterest/callback'
+  }
+
 };
 
 // Export the config object based on the NODE_ENV

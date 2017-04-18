@@ -9,11 +9,13 @@ var User = require('../api/user/user.model');
 require('./local/passport').setup(User, config);
 require('./facebook/passport').setup(User, config);
 require('./twitter/passport').setup(User, config);
+require('./pinterest/passport').setup(User, config);
 
 var router = express.Router();
 
 router.use('/local', require('./local'));
 router.use('/facebook', require('./facebook'));
 router.use('/twitter', require('./twitter'));
+router.use('/pinterest', require('./pinterest'));
 
 module.exports = router;

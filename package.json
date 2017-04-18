@@ -1,7 +1,7 @@
 {
   "name": "guidemebackend",
   "version": "1.0.0",
-  "main" : "app.js",
+  "main": "app.js",
   "scripts": {
     "start": "node app.js"
   },
@@ -30,6 +30,7 @@
     "passport": "~0.3.0",
     "passport-facebook": "latest",
     "passport-local": "^1.0.0",
+    "passport-pinterest": "^1.0.0",
     "passport-twitter": "latest",
     "path": "*",
     "request": "^2.65.0",
