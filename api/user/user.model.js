@@ -3,7 +3,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var crypto = require('crypto');
-var authTypes = ['github', 'twitter', 'facebook', 'google'];
+var authTypes = ['github', 'twitter', 'facebook', 'google','pinterest'];
 var tagsSchema = new Schema({id: Number, title: String});
 var categoriesSchema = new Schema({idcategories: Number, name: String});
 var InterestSchema = new Schema({label: String});
@@ -23,6 +23,7 @@ var UserSchema = new Schema({
     salt: String,
     facebook: {},
     twitter: {},
+    pinterest: {},
     github: {},
 
     pos_latitude: {type: Number},
