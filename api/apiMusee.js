@@ -4,10 +4,10 @@
 var express = require('express');
 var router = express.Router();
 var request = require('request');
-var musee = require('../models/musee');
+var Musee = require('../models/musee');
 
 router.get('/musee', function(req, res) {
-    musee.find(function (err,musee) {
+    Musee.find(function (err,musee) {
         if(err)
             return res.json(err);
         res.json(musee);
@@ -15,7 +15,7 @@ router.get('/musee', function(req, res) {
 });
 
 router.post('/musee', function (req,res) {
-    musee= new musee(req.body);
+    musee= new Musee(req.body);
     musee.save(function (err) {
         if(err)
             return res.json(err);
@@ -25,7 +25,7 @@ router.post('/musee', function (req,res) {
 
 
 router.get('/musee/:id', function(req, res) {
-    musee.findById(req.params.id,function (err,musee) {
+    Musee.findById(req.params.id,function (err,musee) {
         if(!musee)
             return res.status(404).send();
 
@@ -35,12 +35,12 @@ router.get('/musee/:id', function(req, res) {
 
 
 router.delete('/musee/:id', function(req, res) {
-    musee.findByIdAndRemove(req.params.id,function () {
+    Musee.findByIdAndRemove(req.params.id,function () {
         res.json({"success":true});
     })
 });
 router.put('/musee/:id', function(req, res) {
-    musee.findByIdAndUpdate(req.params.id,req.body,function () {
+    Musee.findByIdAndUpdate(req.params.id,req.body,function () {
         res.json({"success":true});
     })
 });
