@@ -39,7 +39,7 @@ router.get('/id/:id', function (req, res, next) {
     });
 });
 router.put('/:id', function (req, res, next) {
-    Interest.findByIdAndUpdate({_id:req.params.id}, req.body, function (err, interest) {//or findOneAndUpdate
+    Interest.findByIdAndUpdate(req.params.id, req.body, function (err, interest) {//or findOneAndUpdate
         if (err)
             return res.json(err);
         res.status(200).json(interest);
