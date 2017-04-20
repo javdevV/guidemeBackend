@@ -12,7 +12,17 @@ var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 var config = require('./config/environment');
+var socket = require('socket.io'),
+    http = require('http'),
+    server = http.createServer(),
+    socket = socket.listen(server);
 
+socket.on('connection', function(connection) {
+    console.log('User Connected');
+    connection.on('message', function(msg){
+        socket.emit('message', msg);
+    });
+});
 // Connect to database
 mongoose.connect(config.mongo.uri, config.mongo.options);
 
@@ -24,7 +34,11 @@ if (config.seedDB) {
 // Setup server
 var app = express();
 var server = require('http').createServer(app);
-
+app.use(function(request, response, next) {
+  response.header("Access-Control-Allow-Origin", "*");
+  response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 require('./config/express')(app);
 require('./routes')(app);
 
