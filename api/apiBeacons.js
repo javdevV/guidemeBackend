@@ -15,11 +15,11 @@ router.get('/beacons', function(req, res) {
 });
 
 router.post('/beacons', function (req,res) {
-    Beacon= new Beacon(req.body);
-    Beacon.save(function (err) {
+    beacon= new Beacon(req.body);
+    beacon.save(function (err) {
         if(err)
             return res.json(err);
-        res.json(Beacon);
+        res.json(beacon);
     })
 });
 
