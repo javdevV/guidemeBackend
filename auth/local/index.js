@@ -14,7 +14,7 @@ router.post('/', function(req, res, next) {
 
     var token = auth.signToken(user._id, user.role);
     console.log("token", token);
-    res.status(200).json({jookokoktoken: token});
+    res.status(200).json({"token": token});
   })(req, res, next)
 });
 
