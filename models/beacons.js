@@ -12,7 +12,8 @@ var beaconsSchema = new Schema({
     state:String,
     longi:Number,
     lapti:Number,
-    remainingdays:Number
+    remainingdays:Number,
+    address:String
 
 },{collection : "ibeacons"});
 module.exports =mongoose.model('ibeacons',beaconsSchema);

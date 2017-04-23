@@ -13,6 +13,7 @@ var apiUser = require('./api/ApiUser');
 var apiReview = require('./api/apiReview');
 var apiBeacons = require('./api/apiBeacons');
 var apiMusee = require('./api/apiMusee');
+var apiChat = require('./api/ApiChat');
 var mongoose = require('./config/db');
 var interestApi = require('./api/ApiInterests');
 var path = require('path');
@@ -29,7 +30,7 @@ module.exports = function (app) {
     app.use('/api', apiUser);
     app.use('/api', apiBeacons);
     app.use('/api',apiReview)
-
+    app.use('/api',apiChat)
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
