@@ -143,9 +143,9 @@ router.put('/addInterestToUser',function (req, res) {
          res.json({"success":true});
     });
 });
-router.delete('/deleteInterestfromUser',function (req, res) {
+router.put('/deleteInterestfromUser',function (req, res) {
     console.log("username ="+user.name);
-    User.findOneAndUpdate({name: user.name}, {$pull:{"interests":req.body}},function (err) {
+    User.findOneAndUpdate({name: user.name}, {$pull:{interests:req.body}},function (err) {
         if(err)
             //console.log("find one and update");
         res.json(err);
