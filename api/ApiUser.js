@@ -20,6 +20,7 @@ User.findById({"_id":"58f39e90734d1d3b89babfeb"},function (err,doc) {
     user.name=doc.name;
     user.evt_tags=doc.evt_tags;
     user.evt_categories=doc.evt_categories;
+    user.interests=doc.interests;
 });
 //
 // var userId = "58e6d52cdad0ee2520e160d0";
@@ -130,22 +131,26 @@ router.get('/loadUsersCats',(req,res)=>{
 });
 
 
-
+//------------sourour
 
 router.put('/addInterestToUser',function (req, res) {
     console.log("username ="+user.name);
-    User.findOneAndUpdate({name: user.name}, {$push:{interests:req.body}},function (err) {
+    User.findOneAndUpdate({name: user.name}, {$push:{"interests":req.body}},function (err) {
         if(err)
-            console.log("find one and update");
+           // console.log("find one and update");
         res.json(err);
+        else
+         res.json({"success":true});
     });
 });
 router.put('/deleteInterestfromUser',function (req, res) {
     console.log("username ="+user.name);
     User.findOneAndUpdate({name: user.name}, {$pull:{interests:req.body}},function (err) {
         if(err)
-            console.log("find one and update");
+            //console.log("find one and update");
         res.json(err);
+        else
+         res.json({"success":true});
     });
 });
 router.get('/usersByInterest/:it',function (req, res) {
@@ -154,7 +159,15 @@ router.get('/usersByInterest/:it',function (req, res) {
             res.json(err);
         res.json(users);
     })
- })
+ });
+router.get('/loadUsersInts',(req,res)=>{
+    User.findById({"_id":"58f39e90734d1d3b89babfeb"},{_id:0,"interests.label":1},(err,users)=>{
+        if(err)
+            res.json(err);
+        res.json(users);
+        console.log(users);
+    })
+});
 
 
 module.exports = router;
