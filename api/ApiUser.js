@@ -121,7 +121,7 @@ router.put('/deleteTagfromUser',function (req, res) {
     })
 });
 router.get('/loadUsersCats',(req,res)=>{
-	User.findById({"_id":"58f39e90734d1d3b89babfeb"},{_id:0,"evt_tags.id":1,"evt_categories.name":1},(err,users)=>{
+	User.findById({"_id":"58f39e90734d1d3b89babfeb"},{_id:0,"evt_categories.idcategories":1,"evt_categories.name":1},(err,users)=>{
         if(err)
             res.json(err);
         res.json(users);
